@@ -1,0 +1,122 @@
+
+------------------------------------------------------------------------
+CREATE PROJECT
+------------------------------------------------------------------------
+
+1) From CMD run this command to create a NextJS APP
+-> npx create-next-app@latest
+
+------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------
+A - NEXTUI SETUP
+------------------------------------------------------------------------
+
+1) Install these 2 packages
+-> npm i @nextui-org/react framer-motion 
+
+1.1) Configure the 'tailwind.config.ts' file
+-> (Check this folder to see the changes made)
+
+------------------------------------------------------------------------
+
+2) Inside the 'app' folder create a 'providers.jsx' file
+-> (Check this folder to see the changes made)
+
+------------------------------------------------------------------------
+
+3) edit the 'layout.tsx' file to import the Providers Component
+-> (Check this folder to see the changes made)
+
+------------------------------------------------------------------------
+
+4) Edit the main 'page.tsx' file
+-> (Check this folder to see the changes made)
+
+------------------------------------------------------------------------
+
+5) Edit the globals.css
+-> Delete everything expect the 3 top @tailwind imports
+
+
+------------------------------------------------------------------------
+B - PRISMA SETUP
+------------------------------------------------------------------------
+
+1) Download from the Tutorial resources the schema
+-> (Check this folder to see the schema file)
+
+------------------------------------------------------------------------
+
+2) Install the Prisma dependency package
+-> npm i prisma
+
+------------------------------------------------------------------------
+
+3) Initialize the Prisma file so that the 'prisma' folder is created with the default schema file.
+-> npx prisma init --datasource-provider sqlite
+
+------------------------------------------------------------------------
+
+4) Substitute the default schema with the one downloaded from the Tutorial Resources
+
+------------------------------------------------------------------------
+
+5) Create the actual DB (dev.db) from the 'schema.prisma' file
+-> npx prisma migrate dev
+-> (Enter the name for the new migration: init)
+
+------------------------------------------------------------------------
+
+6) Create a folder named 'db' inside the 'app' folder and add a file named 'index.ts' to it.
+-> (Check this folder to see the 'db/index.ts' file)
+
+
+------------------------------------------------------------------------
+C - AUTHJS SETUP (Check the 'AUTHJS Setup Steps.png' file)
+------------------------------------------------------------------------
+
+1) Go to: 'https://github.com/settings/applications/new'
+-> Register a new OAuth application in the Github Servers
+-> (Check this folder to see the 'Github OAuth registration.png' file)
+
+------------------------------------------------------------------------
+
+2) Click the 'Generate a new client secret' button
+-> client secret: bfbf1707a57337cd06255509d4f061494682ae45
+
+------------------------------------------------------------------------
+
+3) Add the 'client' and 'secret' to a newly created '.env.local' file in the Root of the project (DISCUSS)
+-> Inside the '.env.local' add this 3 variables exacly like shown:
+	GITHUB_CLIENT_ID = "2532379e2e4f2dd9a8ff"
+	GITHUB_CLIENT_SECRET = "bfbf1707a57337cd06255509d4f061494682ae45"
+	AUTH_SECRET = "Just_Some_Random_Text"
+	
+------------------------------------------------------------------------	
+
+4) Install these 3 Separate Packages: core, auth and next-auth
+-> npm i --save-exact @auth/core@0.18.1 @auth/prisma-adapter@1.0.6 next-auth@5.0.0-beta.3
+
+------------------------------------------------------------------------	
+
+5) Create a 'auth.js' file inside the 'src' folder. Set up 'NextAuth' and the 'PrismaAdapter' in there. 
+-> (Check this folder to see the 'auth.ts' file)
+
+------------------------------------------------------------------------	
+
+6) Create the 'api' Folder Strucure
+-> Create a folder named 'api' inside the 'app' folder
+-> Inside the 'api' create a folder named 'auth'
+-> Inside the 'auth' create a folder named '[...nextauth]'
+-> Inside the '[...nextauth]' folder create a file named 'route.ts'
+-> (Check this folder to see the 'route.ts' file)
+
+------------------------------------------------------------------------	
+
+7) Create the 'actions' Folder Strucure
+-> Create an 'actions' folder inside the 'src' folder and add a 'index.ts' file inside.
+-> (Check this folder to see the 'actions/index.ts' file)
+
+
