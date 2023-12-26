@@ -1,62 +1,18 @@
-import Link from "next/link";
-
-// imports regardins th UI
 import {
   Navbar,
   NavbarBrand,
   NavbarContent,
   NavbarItem,
   Input,
-  Button,
-  Avatar,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
 } from "@nextui-org/react";
 
-import { auth } from "@/auth";
-import * as actions from "@/actions";
+import Link from "next/link";
 
-export default async function Header() {
-  const session = await auth();
+// Client Component
+import HeaderAuth from "@/components/header-auth";
 
-  let authContent: React.ReactNode;
-
-  if (session?.user) {
-    authContent = (
-      <Popover placement="left">
-        <PopoverTrigger>
-          <Avatar src={session.user.image || ""} />
-        </PopoverTrigger>
-        <PopoverContent>
-            <div className="p-4">
-                <form action={actions.signOut}>
-                    <Button type="submit" className=" text-red-700 font-bold">Sign Out</Button>
-                </form>
-            </div>
-        </PopoverContent>
-      </Popover>
-    );
-  } else
-    authContent = (
-      <>
-        <NavbarItem>
-          <form action={actions.signIn}>
-            <Button type="submit" color="secondary" variant="bordered">
-              Sign In
-            </Button>
-          </form>
-        </NavbarItem>
-        <NavbarItem>
-          <form action={actions.signIn}>
-            <Button type="submit" color="primary" variant="flat">
-              Sign Up
-            </Button>
-          </form>
-        </NavbarItem>
-      </>
-    );
-
+export default function Header() {
+    
   return (
     <div>
       <Navbar className="shadow mb-6">
@@ -67,10 +23,12 @@ export default async function Header() {
         </NavbarBrand>
         <NavbarContent justify="center">
           <NavbarItem>
-            <Input />
+            <Input label="Search" labelPlacement="inside" color="secondary" variant="underlined" size="md" /*description="Search for topics, posts and comments" placeholder="Enter your email"*//>
           </NavbarItem>
         </NavbarContent>
-        <NavbarContent justify="end">{authContent}</NavbarContent>
+        <NavbarContent justify="end">
+          <HeaderAuth />
+        </NavbarContent>
       </Navbar>
     </div>
   );
