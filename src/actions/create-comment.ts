@@ -1,5 +1,7 @@
 "use server";
 
-const createComment = async () => {};
+const createComment = async () => {
+  // TODO: Revalidate Post Show Page
+};
 
 export { createComment };

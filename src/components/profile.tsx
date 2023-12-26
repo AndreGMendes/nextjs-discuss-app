@@ -10,8 +10,13 @@ export default function Profile() {
   const info = (name: string, email?: any): string => {
     return `${name} email is ${email}`;
   };
-  
+
   session.data?.user ? console.log(session) : console.log("Not Logged in");
+  session.data?.user
+    ? console.log(
+        `Signed in as ${session.data.user.name} from CLIENT Component`
+      )
+    : console.log(`Signed Out from CLIENT Component`);
 
   return (
     <div>
@@ -19,6 +24,7 @@ export default function Profile() {
         <div className="text-green-700">
           <div>
             <Image
+              className="rounded-full"
               src={`${session.data.user.image}`}
               width={100}
               height={100}

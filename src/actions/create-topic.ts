@@ -1,13 +1,8 @@
 "use server";
 
-async function createTopic() {}
-
 async function justForTesting() {}
+async function createTopic() {
+  // TODO: Revalidate the HomePage
+}
 
 export { createTopic, justForTesting as justForTestingXYZ };
-
-// TODO: Revalidate Page after creating a Topic
-
-
-
-

@@ -3,7 +3,13 @@ const nextConfig = {
   images: {
     domains: ["avatars.githubusercontent.com"],
   },
+
   // reactStrictMode: true,
 };
 
-module.exports = nextConfig;
+(module.exports = nextConfig),
+  {
+    theme: {
+      extend: {},
+    },
+  };
