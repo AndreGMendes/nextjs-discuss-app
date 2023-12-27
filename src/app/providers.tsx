@@ -10,7 +10,7 @@ interface ProvidersProps {
 export default function Providers({ children }: ProvidersProps) {
   return (
     <SessionProvider>
-      <NextUIProvider className="bg-gray-100 text-foreground bg-background">{children}</NextUIProvider>
+      <NextUIProvider /*className="bg-gray-100 text-foreground bg-background"*/ id="mainBody">{children}</NextUIProvider>
     </SessionProvider>
   );
 }

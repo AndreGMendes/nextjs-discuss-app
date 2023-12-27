@@ -1,15 +1,18 @@
-// Components from the Playground
+// User Server Components from the 'Playground' (Testing purposes)
 import { SumComponent, MultiplyComponent } from "@/playground/playground";
-import { TopicCreateForm } from "@/components/topics/topic-create-form";
 
+// Components and Icons regarding 'Font Awesome'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
 import { faPenToSquare as faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 
+// User Server Components
+import { TopicCreateForm } from "@/components/topics/topic-create-form";
+
 export default function Home() {
   return (
-    <div className="grid grid-cols-4 gap-4 p-4  m-2">
+    <div className="grid grid-cols-4 gap-4 p-4  my-2 items-center" id="homePage">
       <div className="col-span-3 ">
         <h1 className="text-xl m-2 flex">
           <FontAwesomeIcon
