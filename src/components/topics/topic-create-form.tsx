@@ -1,3 +1,5 @@
+"use client";
+
 // Components and Icons regarding 'Font Awesome'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
@@ -15,17 +17,24 @@ import {
 } from "@nextui-org/react";
 
 // Imports regarding the Server Actions
-import { createTopic } from "@/actions";
+import * as actions from "@/actions";
+
+// Imports regarding React Hooks
+import { useFormState } from "react-dom";
 
 export const TopicCreateForm = () => {
+  const [formState, action] = useFormState(actions.createTopic, {
+    errors: {},
+  });
+
   return (
-    <Popover placement="left">
+    <Popover placement="left-start">
       <PopoverTrigger>
         <Button color="secondary">Create Topic</Button>
       </PopoverTrigger>
       <PopoverContent>
         <form
-          action={createTopic}
+          action={action}
           style={{
             borderColor: "",
             borderStyle: "",
@@ -47,13 +56,28 @@ export const TopicCreateForm = () => {
               </h3>
             </div>
             <Input
-              label="Name"
+              label="Topic Name"
               labelPlacement="inside"
-              placeholder="Name your Topic"
+            //   placeholder="Name your Topic"
               color="secondary"
-              variant="underlined"
+              variant="bordered"
               size="md"
+              name="name"
             />
+            {formState.errors.name ? (
+              <div className="bg-red-400 p-4 text-white">
+                {formState.errors.name?.map((error, index, array) => (
+                  <span key={index}>
+                    <span className="font-extrabold">Error {index + 1}</span> - {error}
+                    {index !== array.length - 1 ? ", " : "."}
+                    <br />
+                  </span>
+                ))}
+              </div>
+            ) : (
+              ""
+            )}
+
             <Textarea
               label="Description"
               labelPlacement="inside"
@@ -61,6 +85,7 @@ export const TopicCreateForm = () => {
               color="secondary"
               variant="underlined"
               size="md"
+              name="description"
             />
             <Button type="submit" color="secondary">
               Submit
