@@ -3,6 +3,10 @@
 // Importing the ZOD Validation Library
 import { z } from "zod";
 
+// Importing User 'AUTH' JS
+import { auth } from "@/auth";
+
+
 const createTopicSchema = z.object({
   name: z
     .string()
@@ -17,6 +21,7 @@ interface CreateTopicformState {
   errors: {
     name?: string[];
     description?: string[];
+    _form?: string[]
   };
 }
 
@@ -43,6 +48,16 @@ async function createTopic(
       errors: result.error.flatten().fieldErrors,
     };
   }
+
+  const session = await auth() 
+  if (!session || !session.user) {
+    return {
+      errors: {
+        _form: ['Please Sign in first.']
+      }
+    }
+  }
+
   return {
     errors: {},
   };

@@ -21,6 +21,7 @@ import * as actions from "@/actions";
 
 // Imports regarding React Hooks
 import { useFormState } from "react-dom";
+import { useEffect } from "react";
 
 export const TopicCreateForm = () => {
   const [formState, action] = useFormState(actions.createTopic, {
@@ -58,25 +59,23 @@ export const TopicCreateForm = () => {
             <Input
               label="Topic Name"
               labelPlacement="inside"
-            //   placeholder="Name your Topic"
+              //   placeholder="Name your Topic"
               color="secondary"
               variant="bordered"
               size="md"
               name="name"
-            />
-            {formState.errors.name ? (
-              <div className="bg-red-400 p-4 text-white">
-                {formState.errors.name?.map((error, index, array) => (
+              isInvalid={!!formState.errors.name}
+              errorMessage={formState.errors.name?.map(
+                (error, index, array) => (
                   <span key={index}>
-                    <span className="font-extrabold">Error {index + 1}</span> - {error}
+                    <span className="font-extrabold">Error {index + 1}</span> -{" "}
+                    {error}
                     {index !== array.length - 1 ? ", " : "."}
                     <br />
                   </span>
-                ))}
-              </div>
-            ) : (
-              ""
-            )}
+                )
+              )}
+            />
 
             <Textarea
               label="Description"
@@ -86,7 +85,27 @@ export const TopicCreateForm = () => {
               variant="underlined"
               size="md"
               name="description"
+              isInvalid={!!formState.errors.description}
+              errorMessage={formState.errors.description?.map(
+                (error, index, array) => (
+                  <span key={index}>
+                    <span className="font-extrabold">Error {index + 1}</span> -{" "}
+                    {error}
+                    {index !== array.length - 1 ? ", " : "."}
+                    <br />
+                  </span>
+                )
+              )}
             />
+
+            {formState.errors._form ? (
+              <div className="bg-red-600 text-white p-4 text-center">
+                {formState.errors._form?.join(", ")}{" "}
+              </div>
+            ) : (
+              ""
+            )}
+
             <Button type="submit" color="secondary">
               Submit
             </Button>
