@@ -16,6 +16,9 @@ import {
   PopoverContent,
 } from "@nextui-org/react";
 
+// Custom Client Components
+import FormButton from "@/components/common/form-button";
+
 // Imports regarding the Server Actions
 import * as actions from "@/actions";
 
@@ -42,7 +45,7 @@ export const TopicCreateForm = () => {
             borderWidth: "0px 0px",
           }}
         >
-          <div className="flex flex-col gap-4 w-80 items-left">
+          <div className="flex flex-col gap-4 w-80 items-left m-4">
             <div className="flex gap-2">
               <FontAwesomeIcon
                 icon={faPenToSquare}
@@ -99,16 +102,15 @@ export const TopicCreateForm = () => {
             />
 
             {formState.errors._form ? (
-              <div className="bg-red-600 text-white p-4 text-center">
+              <div className="bg-red-200 border rounded-xl border-red-400 text-red-600 p-4 text-center">
                 {formState.errors._form?.join(", ")}{" "}
               </div>
-            ) : (
-              ""
-            )}
+            ) : null}
 
-            <Button type="submit" color="secondary">
+            {/* <Button type="submit" color="secondary">
               Submit
-            </Button>
+            </Button> */}
+            <FormButton>Save</FormButton>
           </div>
         </form>
       </PopoverContent>

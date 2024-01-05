@@ -10,9 +10,15 @@ import { faPenToSquare as faPenToSquare } from "@fortawesome/free-regular-svg-ic
 // User Server Components
 import { TopicCreateForm } from "@/components/topics/topic-create-form";
 
+import { db } from "@/db";
+import TopicList from "@/components/topics/topic-list";
+
 export default function Home() {
   return (
-    <div className="grid grid-cols-4 gap-4 p-4  my-2 items-center" id="homePage">
+    <div
+      className="grid grid-cols-4 gap-4 p-4  my-2 items-center"
+      id="homePage"
+    >
       <div className="col-span-3 ">
         <h1 className="text-xl m-2 flex">
           <FontAwesomeIcon
@@ -36,6 +42,16 @@ export default function Home() {
           className="mx-2"
         />{" "}
         <TopicCreateForm />
+      </div>
+      <div
+        style={{
+          position: "relative",
+          gridArea: "2/4",
+          margin: "0px 16px",
+          padding: "8px 0px 8px 0px",
+        }}
+      >
+        <TopicList />
       </div>
     </div>
   );

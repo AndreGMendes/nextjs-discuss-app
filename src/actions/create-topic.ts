@@ -1,11 +1,19 @@
 "use server";
 
-// Importing the ZOD Validation Library
+// Importing the 'ZOD' Validation Library
 import { z } from "zod";
 
 // Importing User 'AUTH' JS
 import { auth } from "@/auth";
 
+// Imports regarding the 'Prisma' DB
+import type { Topic } from "@prisma/client";
+import { db } from "@/db";
+
+// Imports regarding paths
+import { redirect } from "next/navigation";
+import { appPaths } from "@/paths";
+import { revalidatePath } from "next/cache";
 
 const createTopicSchema = z.object({
   name: z
@@ -21,7 +29,7 @@ interface CreateTopicformState {
   errors: {
     name?: string[];
     description?: string[];
-    _form?: string[]
+    _form?: string[];
   };
 }
 
@@ -29,9 +37,9 @@ async function createTopic(
   formState: CreateTopicformState,
   formData: FormData
 ): Promise<CreateTopicformState> {
-  // TODO: Revalidate the HomePage
-
   console.log(logUserInputValues(formData));
+
+  await new Promise (resolve => setTimeout(resolve, 2500))
 
   const result = createTopicSchema.safeParse({
     name: formData.get("name"),
@@ -49,18 +57,40 @@ async function createTopic(
     };
   }
 
-  const session = await auth() 
+  const session = await auth();
   if (!session || !session.user) {
     return {
       errors: {
-        _form: ['Please Sign in first.']
-      }
-    }
+        _form: ["Please Sign in first."],
+      },
+    };
   }
 
-  return {
-    errors: {},
-  };
+  let topic: Topic;
+  try {
+    topic = await db.topic.create({
+      data: {
+        slug: result.data.name,
+        description: result.data.description,
+      },
+    });
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return {
+        errors: {
+          _form: [error.message],
+        },
+      };
+    } else {
+      return {
+        errors: {
+          _form: ["Something went wrong"],
+        },
+      };
+    }
+  }
+  revalidatePath("/");
+  redirect(appPaths.topicShow(topic.slug));
 }
 
 // Utility Functions (Logging and Other stuff)

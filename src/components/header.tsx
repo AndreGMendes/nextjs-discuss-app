@@ -5,7 +5,10 @@ import {
   NavbarBrand,
   NavbarContent,
   NavbarItem,
-  Input
+  Input,
+  Spacer,
+  Textarea,
+  autocomplete
 } from "@nextui-org/react";
 
 // Generic Components regarding 'NextJS' 
@@ -14,11 +17,12 @@ import Link from "next/link";
 // Client Components
 import HeaderAuth from "@/components/header-auth";
 import Logo from "./Logo";
+import { color } from "framer-motion";
 
 export default function Header() {
   return (
     <div className="" >
-      <Navbar className="mb-2 shadow" shouldHideOnScroll id="header">
+      <Navbar className="mb-2 shadow p-4" shouldHideOnScroll id="header">
         <NavbarBrand>
           <Logo />
           <Link href={"/"} className="font-bold">
@@ -32,8 +36,13 @@ export default function Header() {
               labelPlacement="inside"
               color="secondary"
               variant="flat"
-              size="md" /*description="Search for topics, posts and comments" placeholder="Enter your email"*/
+              size="sm" 
+              // style={{ width: '100%' }}
+              // description="Search for topics, posts or comments" 
+              // placeholder="Search"
             />
+            {/* <Spacer y={1} /> */}
+           
           </NavbarItem>
         </NavbarContent>
         <NavbarContent justify="end">
