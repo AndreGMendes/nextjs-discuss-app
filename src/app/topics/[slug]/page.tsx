@@ -1,7 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-regular-svg-icons";
+import { faPenToSquare as faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import { useEffect, useState } from "react";
 import CustomIcon from "@/components/common/custom-icon";
+import PostCreateForm from "@/components/posts/post-create-form";
 
 interface TopicShowPageProps {
   params: {
@@ -34,6 +36,19 @@ const TopicShowPage = ({ params }: TopicShowPageProps) => {
             .join(" ")}
         </h1>
       </div>
+      <div className="text-md mx-2 flex items-center border-t border-l border-r pt-2">
+        <CustomIcon
+          iconNameProp={faPenToSquare}
+          widthProp={16}
+          marginLeftProp={18}
+          marginRightProp={12}
+          colorProp="#9370db"
+          customCSSAnimationTypeProp="bounceIcon"
+        />
+
+        <PostCreateForm slug={slug}/>
+      </div>
+       
     </div>
   );
 };

@@ -23,15 +23,22 @@ import * as actions from "@/actions";
 import { useFormState } from "react-dom";
 import CustomIcon from "../common/custom-icon";
 
-export const TopicCreateForm = () => {
-  const [formState, action] = useFormState(actions.createTopic, {
-    errors: {},
-  });
+interface PostCreateFormProps {
+  slug: string;
+}
+
+export default function PostCreateForm({ slug }: PostCreateFormProps) {
+  const [formState, action] = useFormState(
+    actions.createPost.bind(null, slug),
+    {
+      errors: {},
+    }
+  );
 
   return (
     <Popover placement="left-start">
       <PopoverTrigger>
-        <Button color="secondary">Create Topic</Button>
+        <Button color="secondary">Create Post</Button>
       </PopoverTrigger>
       <PopoverContent>
         <form
@@ -54,19 +61,19 @@ export const TopicCreateForm = () => {
                 />
               </div>
               <h3 className="text-lg" style={{ color: "#9370db" }}>
-                Create Topic
+                Create Post
               </h3>
             </div>
             <Input
-              label="Topic Name"
+              label="Title"
               labelPlacement="inside"
               //   placeholder="Name your Topic"
               color="secondary"
-              variant="bordered"
+              variant="flat"
               size="md"
-              name="name"
-              isInvalid={!!formState.errors.name}
-              errorMessage={formState.errors.name?.map(
+              name="title"
+              isInvalid={!!formState.errors.title}
+              errorMessage={formState.errors.title?.map(
                 (error, index, array) => (
                   <span key={index}>
                     <span className="font-extrabold">Error {index + 1}</span> -{" "}
@@ -79,15 +86,15 @@ export const TopicCreateForm = () => {
             />
 
             <Textarea
-              label="Description"
+              label="Content"
               labelPlacement="inside"
-              placeholder="Describe your Topic"
+              //   placeholder="Describe your Post"
               color="secondary"
-              variant="underlined"
+              variant="bordered"
               size="md"
-              name="description"
-              isInvalid={!!formState.errors.description}
-              errorMessage={formState.errors.description?.map(
+              name="content"
+              isInvalid={!!formState.errors.content}
+              errorMessage={formState.errors.content?.map(
                 (error, index, array) => (
                   <span key={index}>
                     <span className="font-extrabold">Error {index + 1}</span> -{" "}
@@ -105,10 +112,10 @@ export const TopicCreateForm = () => {
               </div>
             ) : null}
 
-            <FormButton>Save</FormButton>
+            <FormButton>Create post</FormButton>
           </div>
         </form>
       </PopoverContent>
     </Popover>
   );
-};
+}
