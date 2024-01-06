@@ -20,34 +20,29 @@ export default function Home() {
     <div className="grid grid-cols-4 gap-0 p-4 my-2 items-center" id="homePage">
       <div className="col-span-3">
         <h1 className="text-2xl font-bold m-2 flex">
-          {/* <FontAwesomeIcon
-            icon={faStarRegular}
-            
-            width={20}
-            height={30}
-            className="mx-2"
-          
-          />{" "} */}
           <CustomIcon
             iconNameProp={faStarRegular}
             widthProp={20}
             heightProp={30}
+            marginLeftProp={18}
+            marginRightProp={12}
             colorProp="#ff7f50"
-            // customCSSAnimationType="bounceIcon"
-            
+            customCSSAnimationTypeProp="bounceIcon"
           />
           Top Posts
         </h1>
       </div>
 
       <div className="text-md mx-2 flex items-center border-t border-l border-r pt-2">
-        <FontAwesomeIcon
-          icon={faPenToSquare}
-          bounce
-          style={{ color: "#9370db" }}
-          width={20}
-          className="mx-4"
-        />{" "}
+        <CustomIcon
+          iconNameProp={faPenToSquare}
+          widthProp={16}
+          marginLeftProp={18}
+          marginRightProp={12}
+          colorProp="#9370db"
+          customCSSAnimationTypeProp="bounceIcon"
+        />
+
         <TopicCreateForm />
       </div>
       <div
@@ -62,6 +57,7 @@ export default function Home() {
           <Divider className="" />
           <h3 className="text-lg py-2">Topics</h3>
         </div>
+
         <TopicList />
       </div>
     </div>

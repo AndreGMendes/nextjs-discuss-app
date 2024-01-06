@@ -5,7 +5,7 @@ import {
 
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
-import '@/app/custom-css/animations.css'
+import "@/app/custom-css/animations.css";
 
 interface CustomIconProps {
   iconNameProp: IconProp;
@@ -14,7 +14,7 @@ interface CustomIconProps {
   colorProp?: string;
   marginLeftProp?: number;
   marginRightProp?: number;
-  customCSSAnimationType?: string
+  customCSSAnimationTypeProp?: string;
 }
 
 export default function CustomIcon({
@@ -24,7 +24,7 @@ export default function CustomIcon({
   colorProp,
   marginLeftProp,
   marginRightProp,
-  customCSSAnimationType
+  customCSSAnimationTypeProp,
 }: CustomIconProps) {
   return (
     <div>
@@ -32,13 +32,14 @@ export default function CustomIcon({
         icon={iconNameProp}
         style={{
           color: colorProp,
-          marginLeft: "10px",
-          marginRight: "12px",
+          // marginLeft: "18px",
+          // marginRight: "12px",
+          marginLeft: marginLeftProp,
+          marginRight: marginRightProp,
         }}
-        width={20}
-        height={30}
-        className={`mx-2 ${customCSSAnimationType}`}
-       
+        width={widthProp}
+        height={heightProp}
+        className={` ${customCSSAnimationTypeProp}`}
       />
     </div>
   );

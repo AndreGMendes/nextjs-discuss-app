@@ -25,6 +25,7 @@ import * as actions from "@/actions";
 // Imports regarding React Hooks
 import { useFormState } from "react-dom";
 import { useEffect } from "react";
+import CustomIcon from "../common/custom-icon";
 
 export const TopicCreateForm = () => {
   const [formState, action] = useFormState(actions.createTopic, {
@@ -47,14 +48,15 @@ export const TopicCreateForm = () => {
         >
           <div className="flex flex-col gap-4 w-80 items-left m-4">
             <div className="flex gap-2">
-              <FontAwesomeIcon
-                icon={faPenToSquare}
-                bounce
-                style={{ color: "#9370db" }}
-                width={20}
-                height={30}
-                className=""
-              />{" "}
+              <div className="flex items-center">
+                <CustomIcon
+                  iconNameProp={faPenToSquare}
+                  widthProp={20}
+                  heightProp={30}
+                  colorProp="#9370db"
+                  customCSSAnimationTypeProp="bounceIconInfinite"
+                />
+              </div>
               <h3 className="text-lg" style={{ color: "#9370db" }}>
                 Create Topic
               </h3>
@@ -107,9 +109,6 @@ export const TopicCreateForm = () => {
               </div>
             ) : null}
 
-            {/* <Button type="submit" color="secondary">
-              Submit
-            </Button> */}
             <FormButton>Save</FormButton>
           </div>
         </form>

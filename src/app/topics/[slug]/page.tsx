@@ -16,22 +16,15 @@ const TopicShowPage = ({ params }: TopicShowPageProps) => {
     <div className="grid grid-cols-4 gap-0 p-4 my-2 items-center" id="homePage">
       <div className="col-span-3">
         <h1 className="text-2xl font-bold m-2 flex">
-          {/* <FontAwesomeIcon
-            icon={faBookmark}
-            bounce
-            style={{
-              color: "#ff7f50",
-              marginLeft: "10px",
-              marginRight: "12px",
-            }}
-            width={14}
-          /> */}
-          <CustomIcon
-            iconNameProp={faBookmark}
-            widthProp={14}
-            colorProp="#ff7f50"
-            
-          />
+          <div className="flex items-center">
+            <CustomIcon
+              iconNameProp={faBookmark}
+              widthProp={14}
+              colorProp="#ff7f50"
+              marginLeftProp={18}
+              marginRightProp={12}
+            />
+          </div>
           {slug
             .split("-")
             .map(
