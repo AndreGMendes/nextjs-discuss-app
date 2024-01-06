@@ -8,13 +8,6 @@ const nextConfig = {
       },
     ],
   },
-
-  // reactStrictMode: true,
 };
 
-(module.exports = nextConfig),
-  {
-    theme: {
-      extend: {},
-    },
-  };
+module.exports = nextConfig;
